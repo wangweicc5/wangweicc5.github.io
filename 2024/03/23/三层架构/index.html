@@ -506,7 +506,7 @@
 
 
 
-<h3 id="4-Mapper层"><a href="#4-Mapper层" class="headerlink" title="4. Mapper层"></a>4. Mapper层</h3><p>Mapper层是DAO层的实现，负责编写与DAO接口对应的映射规则，即SQL和实体类（POJO）的映射规则。使用MyBatis等框架编写映射规则，将SQL语句与实体类关联起来。</p>
+<h3 id="4-Mapper层（和DAO感觉这两层关系好乱）"><a href="#4-Mapper层（和DAO感觉这两层关系好乱）" class="headerlink" title="4. Mapper层（和DAO感觉这两层关系好乱）"></a>4. Mapper层（和DAO感觉这两层关系好乱）</h3><p>Mapper层是DAO层的实现，负责编写与DAO接口对应的映射规则，即SQL和实体类（POJO）的映射规则。使用MyBatis等框架编写映射规则，将SQL语句与实体类关联起来。</p>
 <figure class="highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">&lt;!-- StudentMapper.xml --&gt;</span> </span><br><span class="line"><span class="tag">&lt;<span class="name">mapper</span> <span class="attr">namespace</span>=<span class="string">&quot;com.example.dao.StudentDAO&quot;</span>&gt;</span>    </span><br><span class="line">    <span class="tag">&lt;<span class="name">insert</span> <span class="attr">id</span>=<span class="string">&quot;insert&quot;</span> <span class="attr">parameterType</span>=<span class="string">&quot;com.example.model.Student&quot;</span>&gt;</span>        		INSERT INTO Student (id, name, age, major)        </span><br><span class="line">      VALUES (#&#123;id&#125;, #&#123;name&#125;, #&#123;age&#125;, #&#123;major&#125;)    </span><br><span class="line">    <span class="tag">&lt;/<span class="name">insert</span>&gt;</span>    </span><br><span class="line">    <span class="comment">&lt;!-- 其他SQL语句 --&gt;</span> </span><br><span class="line"><span class="tag">&lt;/<span class="name">mapper</span>&gt;</span></span><br></pre></td></tr></table></figure>
 
 
@@ -524,7 +524,7 @@
 <h3 id="7-Controller层"><a href="#7-Controller层" class="headerlink" title="7. Controller层"></a>7. Controller层</h3><p>Controller层负责处理用户请求和返回响应。创建一个与实体类对应的Controller类，使用@RestController和@RequestMapping注解来定义URL映射，通过依赖注入方式引入Service接口，并在方法中调用Service层的方法来处理用户请求和返回响应。</p>
 <figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">@RestController</span></span><br><span class="line"><span class="meta">@RequestMapping(&quot;/students&quot;)</span></span><br><span class="line"><span class="keyword">public</span> <span class="keyword">class</span> <span class="title class_">StudentController</span> &#123;</span><br><span class="line">    <span class="meta">@Autowired</span></span><br><span class="line">    <span class="keyword">private</span> StudentService studentService;</span><br><span class="line"></span><br><span class="line">    <span class="meta">@PostMapping</span></span><br><span class="line">    <span class="keyword">public</span> ResponseEntity&lt;String&gt; <span class="title function_">addStudent</span><span class="params">(<span class="meta">@RequestBody</span> Student student)</span> &#123;</span><br><span class="line">        studentService.addStudent(student);</span><br><span class="line">        <span class="keyword">return</span> ResponseEntity.ok(<span class="string">&quot;Student added successfully.&quot;</span>);</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="comment">// 其他方法的实现</span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 
-
+<h1 id="MVC模式是什么？"><a href="#MVC模式是什么？" class="headerlink" title="MVC模式是什么？"></a>MVC模式是什么？</h1>
                 
             </div>
             <hr/>
@@ -755,12 +755,11 @@
 <article id="prenext-posts" class="prev-next articles">
     <div class="row article-row">
         
-        <div class="article col s12 m6" data-aos="fade-up" data-aos="fade-up">
+        <div class="article col s12 m6" data-aos="fade-up">
             <div class="article-badge left-badge text-color">
-                <i class="far fa-dot-circle"></i>&nbsp;Current
-            </div>
+                <i class="fas fa-chevron-left"></i>&nbsp;Previous</div>
             <div class="card">
-                <a href="/2024/03/23/%E4%B8%89%E5%B1%82%E6%9E%B6%E6%9E%84/">
+                <a href="/2024/03/25/Maven%E9%AB%98%E7%BA%A7/">
                     <div class="card-image">
                         
                         
@@ -776,9 +775,9 @@
                         
                     </div>
                     <div class="publish-info">
-                            <span class="publish-date">
-                                <i class="far fa-clock fa-fw icon-date"></i>2024-03-23
-                            </span>
+                        <span class="publish-date">
+                            <i class="far fa-clock fa-fw icon-date"></i>2024-03-25
+                        </span>
                         <span class="publish-author">
                             
                             <i class="fas fa-user fa-fw"></i>
@@ -787,7 +786,6 @@
                         </span>
                     </div>
                 </div>
-
                 
             </div>
         </div>
